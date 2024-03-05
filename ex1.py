@@ -12,9 +12,9 @@ import cv2
 import datetime
 import os
 
-def save_frame(depth_frame, color_frame):
-    np.save("depth_frame.npy", depth_frame)
-    np.save("color_frame.npy", color_frame)
+def save_frame(depth_frame, color_frame, file_name):
+    np.save(file_name+"depth", depth_frame)
+    np.save(file_name+"color", color_frame)
 
 save_main_folder = "captured_images/"
 
@@ -61,13 +61,13 @@ try:
         # 检查是否按下 'q' 键或 'Esc' 键，如果是则退出循环
 
         # Wait for a coherent pair of frames: depth and color
-        frames = 'pipeline'.wait_for_frames()
+        frames = pipeline.wait_for_frames()
         depth_frame = frames.get_depth_frame()
         color_frame = frames.get_color_frame()
         if not depth_frame or not color_frame:
             continue
 
-        save_frame(depth_frame.get_data(), color_frame.get_data())
+        # save_frame(depth_frame.get_data(), color_frame.get_data())
         # Convert images to numpy arrays
         depth_image = np.asanyarray(depth_frame.get_data())
         color_image = np.asanyarray(color_frame.get_data())
@@ -124,7 +124,8 @@ try:
                 os.makedirs(folder_path)
 
             # 保存图像
-            np.save(file_name, frame)
+            # np.save(file_name, frame)
+            save_frame(depth_frame.get_data(), color_frame.get_data(),file_name )
             print(f"Image saved: {file_name}")
             print("\r\nPlease press the keyboard button to save the photo. ")
             print("1.Mature、2.Immature、3.overripe (slightly rotten)、4.bitten by insects")

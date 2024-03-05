@@ -88,7 +88,6 @@ try:
         # Show images
         cv2.namedWindow('RealSense', cv2.WINDOW_AUTOSIZE)
         cv2.imshow('RealSense', images)
-        key = cv2.waitKey(1)
 
         # 检查是否按下 'q' 键或 'Esc' 键，如果是则退出循环
         key = cv2.waitKey(1)

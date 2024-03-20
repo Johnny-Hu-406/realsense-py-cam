@@ -12,7 +12,7 @@ import cv2
 import datetime
 import os
 
-def save_frame(depth_frame, color_frame,file_name , depth_colormap, color_image):
+def save_frame(depth_frame, color_frame, file_name , depth_colormap, color_image):
     np.save(file_name+"depth", depth_frame, color_image)
     np.save(file_name+"color", color_frame)
 
